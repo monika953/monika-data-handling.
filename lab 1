@@ -1,0 +1,51 @@
+library(ggplot2)
+
+# Create dataset
+temp_data <- data.frame(
+  Week = rep(as.Date(c("2023-01-01", "2023-01-08", "2023-01-15")), each = 3),
+  City = rep(c("New York", "Los Angeles", "Chicago"), times = 3),
+  Temperature = c(-2, 15, -5, 0, 17, -3, 2, 18, -2)
+)
+
+# Line plot
+ggplot(temp_data, aes(x = Week, y = Temperature, color = City, group = City)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 3) +
+  labs(title = "Weekly Average Temperatures", x = "Week", y = "Temperature (°C)") +
+  theme_minimal()
+
+library(ggplot2)
+
+# Create dataset
+engagement <- data.frame(
+  Date = as.Date("2023-01-01") + 0:6,
+  Likes = seq(150, 450, 50),
+  Comments = seq(20, 50, 5),
+  Shares = seq(30, 60, 5)
+)
+
+# Hexbin plot: Likes vs Shares
+ggplot(engagement, aes(x = Likes, y = Shares)) +
+  geom_hex() +
+  labs(title = "Social Media Engagement", x = "Likes", y = "Shares") +
+  theme_minimal()
+
+library(ggplot2)
+library(reshape2)
+
+# Create dataset
+sales <- data.frame(
+  Month = month.abb[1:11],
+  Product_A = c(500,600,700,800,750,850,900,950,1000,1050,1100),
+  Product_B = c(300,320,350,400,420,450,480,500,550,580,600),
+  Product_C = c(200,250,300,350,400,420,450,470,500,530,550)
+)
+
+# Reshape for violin plot
+sales_melt <- melt(sales, id.vars = "Month", variable.name = "Product", value.name = "Sales")
+
+# Violin plot
+ggplot(sales_melt, aes(x = Product, y = Sales, fill = Product)) +
+  geom_violin(trim = FALSE) +
+  labs(title = "Sales Performance Over the Year", x = "Product", y = "Sales") +
+  theme_minimal()
