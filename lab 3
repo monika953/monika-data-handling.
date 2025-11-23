@@ -1,0 +1,39 @@
+library(plotly)
+
+weather <- data.frame(
+  Date = as.Date(c("2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04", "2023-01-05")),
+  Temperature = c(10, 12, 8, 15, 14),
+  Humidity = c(75, 70, 80, 65, 72),
+  WindSpeed = c(15, 12, 18, 20, 16)
+)
+
+# 3D Scatter Plot
+plot_ly(weather, x = ~Humidity, y = ~WindSpeed, z = ~Temperature, type = "scatter3d", mode = "markers")
+
+# 3D Surface Plot
+plot_ly(weather, x = ~Humidity, y = ~WindSpeed, z = ~Temperature, type = "mesh3d")
+
+# Compare Temperature vs Humidity
+plot_ly(weather, x = ~Humidity, y = ~Temperature, type = "scatter", mode = "lines+markers")
+
+# Compare Temperature vs WindSpeed
+plot_ly(weather, x = ~WindSpeed, y = ~Temperature, type = "scatter", mode = "lines+markers")
+
+finance <- data.frame(
+  Date = as.Date(c("2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04", "2023-01-05")),
+  StockPrice = c(100, 102, 98, 105, 108),
+  Volume = c(2.5, 3.0, 2.2, 2.8, 3.5),
+  MarketCap = c(500, 510, 490, 525, 540)
+)
+
+# 3D Scatter Plot
+plot_ly(finance, x = ~Volume, y = ~MarketCap, z = ~StockPrice, type = "scatter3d", mode = "markers")
+
+# 3D Surface Plot
+plot_ly(finance, x = ~StockPrice, y = ~Volume, z = ~MarketCap, type = "mesh3d")
+
+# Compare StockPrice vs Volume
+plot_ly(finance, x = ~Volume, y = ~StockPrice, type = "scatter", mode = "lines+markers")
+
+# Compare StockPrice vs MarketCap
+plot_ly(finance, x = ~MarketCap, y = ~StockPrice, type = "scatter", mode = "lines+markers")
